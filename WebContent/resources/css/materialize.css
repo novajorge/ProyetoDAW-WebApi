@@ -4307,6 +4307,7 @@ nav i.material-icons {
 nav .nav-wrapper {
   position: relative;
   height: 100%;
+  padding: 0 25px;
 }
 
 @media only screen and (min-width: 993px) {
@@ -5780,7 +5781,9 @@ body.keyboard-focused .dropdown-content li:focus {
 .modal .modal-content {
   padding: 24px;
 }
-
+.modal .modal-content nav {
+  margin-bottom: 20px;
+}
 .modal .modal-close {
   cursor: pointer;
 }
