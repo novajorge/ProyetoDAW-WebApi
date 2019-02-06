@@ -18,8 +18,8 @@
 		</div>
 		<div class="row">
 			<div class="toolbar-section">
-				<div class="col s4 "><button class="waves-effect waves-light btn-small" type="submit" name="submit">Entrar!</button></div>
-				<div class="col s4 "><a class="right-align">recuperar contraseña</a></div>
+				<div class="col s6 "><button class="waves-effect waves-light btn-small" type="submit" name="submit">Entrar!</button></div>
+				<div class="col s6 "><a class="right-align">recuperar contraseña</a></div>
 			</div>
 		</div>
 	</form>

@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!-- Modal Structure -->
-<div id="login" class="modal">
+<div id="login" class="modal modal-fixed-footer">
 	<div class="modal-content">
 		<nav>
 			<div class="nav-wrapper">
 				<ul id="nav-mobile" class="hide-on-med-and-down">
-					<li class="active"><a>Ya soy Usuario!</a></li>
-					<li class=""><a>Soy nuevo, Dejame Registrarme!</a></li>
+					<li id="showLogin" class="active"><a>Ya soy Usuario!</a></li>
+					<li id="showRegister" class=""><a>Soy nuevo, Dejame Registrarme!</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -19,6 +19,6 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<a class="modal-close waves-effect waves-light red btn-small"><i class="material-icons left">close</i>Close</a>
+		<a href="#!" class="modal-close waves-effect waves-red btn-flat"><i class="material-icons left">close</i>Close</a>
 	</div>
 </div>

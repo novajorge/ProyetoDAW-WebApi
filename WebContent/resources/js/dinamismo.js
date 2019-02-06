@@ -9,3 +9,26 @@ $(document).ready(function(){
 
 
 //eventos modal, moverse en el menu
+$(document).ready(function(){
+	$("#showLogin").click(function(){
+		  if($("#showLogin").hasClass("active")){
+			  
+		  }else{
+			  $("#showLogin").addClass("active");
+			  $("#loginIn").show();
+			  $("#showRegister").removeClass("active");
+			  $("#registerIn").hide();
+		  }
+		});
+	$("#showRegister").click(function(){
+		  if($("#showRegister").hasClass("active")){
+			  
+		  }else{
+			  $("#showRegister").addClass("active");
+			  $("#registerIn").show();
+			  $("#showLogin").removeClass("active");
+			  $("#loginIn").hide();
+		  }
+		});
+});
+//eventos modal, moverse en el menu

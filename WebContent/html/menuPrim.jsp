@@ -26,7 +26,7 @@
 		<li class=""><a href="#">API DOCUMENTATION</a></li>
 		<li class=""><a href="#">PLANS</a></li>
 		<li class=""><a href="#">CONTACT</a></li>
-		<% if(session == null){ %>
+		<% if(session != null){ %>
 			<li class=""><a class="modal-trigger" href="#login">LOGIN</a></li>
 		<% }else{ %>
 			<li class=""><a href="#">LOGOUT</a></li>
