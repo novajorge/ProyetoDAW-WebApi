@@ -58,6 +58,7 @@ public class Traductor {
 			JSONObject footer = (JSONObject) objJSon.get("footer");
 			Map<String, String> menuFooter= gson.fromJson(footer.toJSONString(), type);
 			translate.put("footer", menuFooter);
+			translate.get("menu");
 			System.out.println(menuFooter.toString());
 			
 			
