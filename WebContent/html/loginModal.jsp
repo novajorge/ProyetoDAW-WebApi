@@ -14,7 +14,7 @@
 		<div id="loginIn">
 			<%@include file="forms/login.jsp"%>
 		</div>
-		<div id="registerIn">
+		<div class="" id="registerIn">
 			<%@include file="forms/register.jsp"%>
 		</div>
 	</div>

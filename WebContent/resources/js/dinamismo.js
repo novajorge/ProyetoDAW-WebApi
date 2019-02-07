@@ -10,6 +10,7 @@ $(document).ready(function(){
 
 //eventos modal, moverse en el menu
 $(document).ready(function(){
+	$("#registerIn").hide();
 	$("#showLogin").click(function(){
 		  if($("#showLogin").hasClass("active")){
 			  

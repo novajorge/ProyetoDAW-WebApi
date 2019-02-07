@@ -1,0 +1,13 @@
+{
+	"menu":{
+		"menu1": "Blog",
+		"menu2": "Documentacion Api",
+		"menu3": "Precios",
+		"menu4": "Contacto",
+		"menu5": "Login"
+	},
+	"footer":{
+		"footer1": "Titulo del Footer",
+		"footer2": "Texto dentro del footer, pos eso"
+	}
+}
