@@ -6,13 +6,17 @@ package translate;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.util.HashMap;
-import java.util.List;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import com.google.gson.Gson;
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
+
+import com.google.gson.reflect.TypeToken;
 /**
  * @author Jorge
  *
@@ -20,11 +24,12 @@ import org.json.simple.parser.ParseException;
 public class Traductor {
 	JSONParser jsonParser = new JSONParser();
 	String idioma, url;
-	HashMap<String, HashMap> arrayIdioma;
-
+	HashMap<String,Map> translate;
+	Gson gson = new Gson(); 
 	public Traductor(String idioma,String url) throws IOException, ParseException{
 		this.idioma = idioma;
 		this.url = url;
+		translate = new HashMap<String,Map>();
 		//recorro la carpeta languajes para ver que carpetas hay creadas
 		//si entre ellas esta la carpeta == que el idioma
 		//pasaremos a añadir idioma
@@ -37,28 +42,31 @@ public class Traductor {
 		//comprobaremos que el archivo lang.json exista si no es asi mostraremos un error y cambiaremos idioma
 		//idoma en ingles, este podra ser una copia pero dentro de java.resources
 		//comprobaremos tambien que no este vacio.
+		
 		try (FileReader reader = new FileReader(url+"/"+idioma+"/lang.json"))
 		{
-			Gson gson = new Gson(); 
 			//Read JSON filed
-			Object obj = jsonParser.parse(reader);
-			JSONObject objJSon = (JSONObject) obj;
-			
+			Object obj = jsonParser.parse(reader); //parsea el file en Object generico
+			JSONObject objJSon = (JSONObject) obj; //leemos el json entero y de alli sacaremos las secciones
+			Type type = new TypeToken<Map<String, String>>(){}.getType(); // definimos el tipo de map que vamos a usar
 			//recogemos el menu
 			JSONObject menu = (JSONObject) objJSon.get("menu");
-
-			HashMap <String, String>menuMap = gson.fromJson(menu.toJSONString());
+			Map<String, String> menuMap = gson.fromJson(menu.toJSONString(), type);
+			translate.put("menu", menuMap);
+			System.out.println(menuMap.toString());
 			//recogemos el footer
 			JSONObject footer = (JSONObject) objJSon.get("footer");
+			Map<String, String> menuFooter= gson.fromJson(footer.toJSONString(), type);
+			translate.put("footer", menuFooter);
+			System.out.println(menuFooter.toString());
 			
-			System.out.println(menu.toJSONString());
-			System.out.println(footer.toJSONString());
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public HashMap<String,HashMap> getArrayIdioma(){
-		return arrayIdioma;	
+	public HashMap<String,Map> getTranslate(){
+		return translate;	
 	}
 }
