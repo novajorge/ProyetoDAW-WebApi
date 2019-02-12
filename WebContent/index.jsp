@@ -11,10 +11,9 @@
 </head>
 <body>
 <%@ page import="translate.*" %>
-
+<%= request.getLocale().toString() %>
 <% Traductor Idioma = new Traductor(request.getLocale().toString(),application.getRealPath("languajes")); %>
 <% session.setAttribute("menu", Idioma.getTranslate().get("menu")); %>
-
 	<!--  Menu web -->
 	<%@include  file="html/menuPrim.jsp" %>
   	<!-- // Menu web // -->

@@ -1,0 +1,9 @@
+{
+	"database":{
+		"jdbc_DRIVER" : "org.mariadb.jdbc.Driver",
+		"db_URL" : "localhost",
+		"db_DATABASE": "aplicaciones",
+		"db_User" : "root",
+		"db_Pass" : "jorge"
+	}
+}

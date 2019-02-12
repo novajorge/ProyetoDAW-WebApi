@@ -1,9 +1,9 @@
 {
 	"menu":{
 		"menu1": "Blog",
-		"menu2": "Documentacion Api",
-		"menu3": "Precios",
-		"menu4": "Contacto",
+		"menu2": "Api Documentation",
+		"menu3": "Prices",
+		"menu4": "Contact",
 		"menu5": "Login",
 		"menu6": "Logout"
 	},
