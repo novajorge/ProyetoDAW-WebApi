@@ -36,12 +36,12 @@ public class LoginSesion extends HttpServlet {
 		Usuario loged = new Usuario();
 		loged.setNombre(request.getParameter("user"));//si fuera correo deberiamos diferenciarlo aqui
 		loged.setContraseña(request.getParameter("passwd")); //md5 y esas cosas aqui
-
-		ConexionMariaDB conexion = new ConexionMariaDB();
+		
+		ConexionMariaDB conexion = new ConexionMariaDB(request.getRealPath("/"));
 		UsuarioDAO userBD = new UsuarioDAO(conexion.getObjConexion());
 		Usuario user = userBD.recuperarUsuario(loged);
 		System.out.println(user.toString());
-		
+		 
 		}catch (Exception e) {
 			System.out.println("error:"+e);
 

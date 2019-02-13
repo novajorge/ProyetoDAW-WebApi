@@ -27,7 +27,6 @@ public class UsuarioDAO implements metodosDB {
 		Usuario usuario1=null;
 		Nivel nivel=null;
 		try {
-			System.out.println(con.getCatalog());
 			st = con.prepareStatement(DbQuery.getRecuperarusuario());
 			if(usuario.getCorreo()== null) {
 				String a = "null";
@@ -35,7 +34,7 @@ public class UsuarioDAO implements metodosDB {
 			}else {
 				st.setString(1,usuario.getNombre());
 			}
-			if(usuario.getCorreo()== null) {
+			if(usuario.getNombre()== null) {
 				String a = "null";
 				st.setString(2,a);
 			}else {
@@ -44,7 +43,10 @@ public class UsuarioDAO implements metodosDB {
 			rs=st.executeQuery(); 
 			if (rs.next()){
 				nivel = new Nivel();
+				System.out.println(rs.getString(0));
 				nivel.setNivel(rs.getString("nivel"));
+
+				System.out.println(nivel.getNivel());
 				nivel = new NivelDAO(con).recuperarUsuario(nivel);
 				usuario1= new Usuario(rs.getString("nombre"),rs.getString("contraseña"),rs.getString("correo"),rs.getString("empresa"),nivel,rs.getBoolean("activa"),rs.getDate("fechaCreacion"));
 			}		

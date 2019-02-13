@@ -20,13 +20,13 @@ public class ConexionMariaDB {
 	// VARIABLES
 	private Connection objConexion;
 	private String jdbc_DRIVER, db_URL, db_Database, db_User, db_Pass;
-	private static final String CONEXIONDB = "src\\conf\\conexionDB.json";
+	private static final String CONEXIONDB ="WEB-INF/conf/conexionjson.json";
 
 	// CONTRUCTORES
-	public ConexionMariaDB() throws DAOException { 
-		try {
-			parseJson(CONEXIONDB);
-			Class.forName(jdbc_DRIVER);
+	public ConexionMariaDB(String ruta) throws DAOException { 
+		try { 
+			parseJson(ruta+CONEXIONDB); 
+			Class.forName(jdbc_DRIVER); 
 				objConexion = DriverManager.getConnection("jdbc:mariadb://" + db_URL + "/" + db_Database, db_User,db_Pass);
 		} catch (ClassNotFoundException e) {
 			throw new DAOException("no se ha cargado los controladores jdbc", e);
@@ -57,7 +57,7 @@ public class ConexionMariaDB {
 			return ok;
 
 		} catch (Exception e) {
-			System.out.println("error :" + e);
+			System.out.println("Error :" + e);
 			return ok;
 		}
 
