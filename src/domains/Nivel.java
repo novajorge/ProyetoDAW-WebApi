@@ -59,6 +59,9 @@ public class Nivel{
 		this.tiempo = tiempo;
 	}
 
-
+	@Override
+	public String toString() {
+		return "Nivel [nivel=" + nivel + ", solicitudes=" + solicitudes + ", tiempo=" + tiempo + "]";
+	}
 
 }

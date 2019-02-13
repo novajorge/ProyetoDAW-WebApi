@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <div class="row">
-	<form class="col s12" action="LoginSesion" method="post">
+	<form class="col s12" action="../../LoginSesion" method="post">
 		<div class="row">
 			<div class="input-field col s8 center-align">
 				<input placeholder="usuario o correo electronico" type="text"

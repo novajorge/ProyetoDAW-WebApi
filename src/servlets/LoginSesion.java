@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import bbdd.ConexionMariaDB;
 import daos.UsuarioDAO;
 import domains.Usuario;
+import util.Validator;
 
 /**
  * Servlet implementation class LoginSesion
@@ -22,8 +23,6 @@ public class LoginSesion extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public LoginSesion() {
-        super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -34,13 +33,27 @@ public class LoginSesion extends HttpServlet {
 		
 		try {
 		Usuario loged = new Usuario();
-		loged.setNombre(request.getParameter("user"));//si fuera correo deberiamos diferenciarlo aqui
-		loged.setContraseña(request.getParameter("passwd")); //md5 y esas cosas aqui
 		
-		ConexionMariaDB conexion = new ConexionMariaDB(request.getRealPath("/"));
+		//comprobamos si es correo o nombre
+		if(Validator.esEmail(request.getParameter("user"))) {
+			loged.setCorreo(request.getParameter("user"));
+		}else {
+			loged.setNombre(request.getParameter("user"));
+		}
+		loged.setContraseña(request.getParameter("passwd"));
+		
+		ConexionMariaDB conexion = new ConexionMariaDB(getServletContext().getRealPath("/WEB-INF/classes/"));
 		UsuarioDAO userBD = new UsuarioDAO(conexion.getObjConexion());
 		Usuario user = userBD.recuperarUsuario(loged);
-		System.out.println(user.toString());
+		
+		if(user != null) {
+			if(Validator.contraseñaMD5Correcta(loged.getContraseña(), user.getContraseña())){
+				System.out.println("Login correcto");
+				response.sendRedirect(request.getContextPath() + "/admin");
+			}else {
+				System.out.println("contraseña incorrecta");
+			}
+		}
 		 
 		}catch (Exception e) {
 			System.out.println("error:"+e);

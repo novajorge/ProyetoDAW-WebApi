@@ -1,5 +1,12 @@
 package util;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import javax.xml.bind.DatatypeConverter;
+
 /**
  * Clase que maneja las validaciones de los formatos de los datos de la aplicacion
  * 
@@ -156,6 +163,34 @@ public class Validator {
 		}
 		return validation;
 	}
+	public static boolean esEmail(String email) {
+        // Patrón para validar el email
+        Pattern pattern = Pattern
+                .compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+ 
+        Matcher mather = pattern.matcher(email);
+ 
+        if (mather.find() == true) {
+           return true;
+        } else {
+           return false;
+        }
+	}
+	
+	public static boolean contraseñaMD5Correcta(String formPassword, String dbPassword) throws NoSuchAlgorithmException {
+	    String hash = dbPassword;
+	    String password = formPassword;
+	         
+	    MessageDigest md = MessageDigest.getInstance("MD5");
+	    md.update(password.getBytes());
+	    byte[] digest = md.digest();
+	    String myHash = DatatypeConverter.printHexBinary(digest).toUpperCase();
+	    System.out.println(myHash);
+	    System.out.println(hash);
+	    
+	    return myHash.equals(hash.toUpperCase());
+	}
 
 	public static void main(String []a){
 		
@@ -163,6 +198,6 @@ public class Validator {
 		double a1=0;
 		System.out.println(a1);
 	}
-
+	
 	
 }

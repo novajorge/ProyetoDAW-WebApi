@@ -1,12 +1,15 @@
 package bbdd;
 
+import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
 
 
 import exceptions.DAOException;
@@ -20,12 +23,17 @@ public class ConexionMariaDB {
 	// VARIABLES
 	private Connection objConexion;
 	private String jdbc_DRIVER, db_URL, db_Database, db_User, db_Pass;
-	private static final String CONEXIONDB ="WEB-INF/conf/conexionjson.json";
+	private static final String CONEXIONDB ="conf/conexionjson.json";
 
 	// CONTRUCTORES
 	public ConexionMariaDB(String ruta) throws DAOException { 
-		try { 
-			parseJson(ruta+CONEXIONDB); 
+		try {
+			if(ruta != null) {
+				parseJson(ruta+CONEXIONDB);
+			}else {
+				System.out.println(ruta);
+				parseJson(CONEXIONDB);
+			}
 			Class.forName(jdbc_DRIVER); 
 				objConexion = DriverManager.getConnection("jdbc:mariadb://" + db_URL + "/" + db_Database, db_User,db_Pass);
 		} catch (ClassNotFoundException e) {
@@ -71,9 +79,5 @@ public class ConexionMariaDB {
 	// SETS
 	public void setObjConexion(Connection objConexion) {
 		this.objConexion = objConexion;
-	}
-
-	public static void main(String[] args) {
-
 	}
 }
