@@ -10,6 +10,9 @@
 	<title>Apps Api Aplication</title>
 </head>
 <body>
+	<%= session.getAttribute("usuario") %>
+	<%= session.getCreationTime() %>
+	<%= session.getLastAccessedTime() %>
 <%@ page import="translate.*" %>
 <%= request.getLocale().toString() %>
 <% Traductor Idioma = new Traductor(request.getLocale().toString(),application.getRealPath("languajes")); %>

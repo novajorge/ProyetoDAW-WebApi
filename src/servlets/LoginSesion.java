@@ -6,6 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.mysql.cj.Session;
 
 import bbdd.ConexionMariaDB;
 import daos.UsuarioDAO;
@@ -48,16 +51,18 @@ public class LoginSesion extends HttpServlet {
 		
 		if(user != null) {
 			if(Validator.contraseñaMD5Correcta(loged.getContraseña(), user.getContraseña())){
-				System.out.println("Login correcto");
+				HttpSession session = request.getSession();
+				//System.out.println("Login correcto");
+				session.setAttribute("usuario",loged.getNombre());
 				response.sendRedirect(request.getContextPath() + "/admin");
 			}else {
-				System.out.println("contraseña incorrecta");
+				//System.out.println("contraseña incorrecta");
+				response.sendRedirect(request.getContextPath() + "/index.jsp");
 			}
 		}
 		 
 		}catch (Exception e) {
 			System.out.println("error:"+e);
-
 		}
 	}
 

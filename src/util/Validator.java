@@ -186,8 +186,8 @@ public class Validator {
 	    md.update(password.getBytes());
 	    byte[] digest = md.digest();
 	    String myHash = DatatypeConverter.printHexBinary(digest).toUpperCase();
-	    System.out.println(myHash);
-	    System.out.println(hash);
+	    //System.out.println(myHash);
+	    //System.out.println(hash);
 	    
 	    return myHash.equals(hash.toUpperCase());
 	}
