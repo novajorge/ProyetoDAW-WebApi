@@ -9,6 +9,7 @@ import domains.Nivel;
 import domains.Usuario;
 import exceptions.DAOException;
 import interfaces.metodosDB;
+import recursos.Costantes;
 import recursos.DbQuery;
 
 /**
@@ -34,7 +35,7 @@ public class NivelDAO implements metodosDB{
 				nivel1= new Nivel(rs.getString("nivel"),rs.getDouble("solicitudes"),rs.getInt("tiempo"));
 			}	
 		} catch (SQLException e) {
-			throw new DAOException(DB_ERR, e);
+			throw new DAOException(Costantes.DB_ERR, e);
 			
 		} finally {
 			closeResultSet(rs);

@@ -9,6 +9,7 @@ import domains.Nivel;
 import domains.Usuario;
 import exceptions.DAOException;
 import interfaces.metodosDB;
+import recursos.Costantes;
 import recursos.DbQuery;
 
 public class UsuarioDAO implements metodosDB {
@@ -49,7 +50,7 @@ public class UsuarioDAO implements metodosDB {
 				usuario1= new Usuario(rs.getString("nombre"),rs.getString("contraseña"),rs.getString("correo"),rs.getString("empresa"),nivel,rs.getBoolean("activa"),rs.getDate("fechaCreacion"));
 			}		
 		} catch (SQLException e) {
-			throw new DAOException(DB_ERR, e);
+			throw new DAOException(Costantes.DB_ERR, e);
 		} finally {
 			closeResultSet(rs);
 			closePreparedStatement(st);

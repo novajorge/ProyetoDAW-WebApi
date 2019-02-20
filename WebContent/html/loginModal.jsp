@@ -17,6 +17,9 @@
 		<div class="" id="registerIn">
 			<%@include file="forms/register.jsp"%>
 		</div>
+		<div class="" id="recuperarContrasenaIn">
+			<%@include file="forms/recuperarContraseña.jsp"%>
+		</div>
 	</div>
 	<div class="modal-footer">
 		<a href="#!" class="modal-close waves-effect waves-red btn-flat"><i class="material-icons left">close</i>Close</a>

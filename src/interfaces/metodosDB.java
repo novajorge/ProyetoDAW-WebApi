@@ -9,12 +9,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import exceptions.DAOException;
+import recursos.Costantes;
 
 /**
  * @author Jorge
  *
  */
-public interface metodosDB extends ErroresDB{
+public interface metodosDB{
 
 	
 	 default void closeResultSet(ResultSet rs) throws DAOException {
@@ -23,7 +24,7 @@ public interface metodosDB extends ErroresDB{
 				rs.close();
 			}
 		} catch (SQLException e) {
-			throw new DAOException(DB_ERR, e);
+			throw new DAOException(Costantes.DB_ERR, e);
 		}
 	}
 
@@ -33,7 +34,7 @@ public interface metodosDB extends ErroresDB{
 				st.close();
 			}
 		} catch (SQLException e) {
-			throw new DAOException(DB_ERR, e);
+			throw new DAOException(Costantes.DB_ERR, e);
 		}
 	}
 	 default void closeCallableStatement(CallableStatement st) throws DAOException {
@@ -42,7 +43,7 @@ public interface metodosDB extends ErroresDB{
 				st.close();
 			}
 		} catch (SQLException e) {
-			throw new DAOException(DB_ERR, e);
+			throw new DAOException(Costantes.DB_ERR, e);
 		}
 	}
 }
