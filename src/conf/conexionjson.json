@@ -2,8 +2,23 @@
 	"database":{
 		"jdbc_DRIVER" : "org.mariadb.jdbc.Driver",
 		"db_URL" : "localhost",
-		"db_DATABASE": "aplicaciones",
+		"db_DATABASE": "database",
 		"db_User" : "root",
-		"db_Pass" : "jorge"
+		"db_Pass" : "1234"
+	},
+	"database2":{
+		"jdbc_DRIVER" : "com.mysql.jdbc.Driver",
+		"db_URL" : "remotemysql.com",
+		"db_DATABASE": "l6DWGdxcY0",
+		"db_User" : "l6DWGdxcY0",
+		"db_Pass" : "VJR66c9oBS"
+	},
+	"database3":{
+		"jdbc_DRIVER" : "com.mysql.jdbc.Driver",
+		"db_URL" : "remotemysql.com",
+		"db_DATABASE": "cuHNeNMEMX",
+		"db_User" : "cuHNeNMEMX",
+		"db_Pass" : "C9OFHJLCUb"
 	}
+	
 }

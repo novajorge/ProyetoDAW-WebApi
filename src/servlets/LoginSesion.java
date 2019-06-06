@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.mysql.cj.Session;
 
 import bbdd.ConexionMariaDB;
+import daos.DatabaseDAO;
 import daos.UsuarioDAO;
 import domains.Usuario;
 import util.Validator;
@@ -43,21 +44,23 @@ public class LoginSesion extends HttpServlet {
 		}else {
 			loged.setNombre(request.getParameter("user"));
 		}
-		loged.setContraseña(request.getParameter("passwd"));
+		loged.setContrasena(request.getParameter("passwd"));
+		
 		
 		ConexionMariaDB conexion = new ConexionMariaDB(getServletContext().getRealPath("/WEB-INF/classes/"));
 		UsuarioDAO userBD = new UsuarioDAO(conexion.getObjConexion());
 		Usuario user = userBD.recuperarUsuario(loged);
-		
 		if(user != null) {
-			if(Validator.contraseñaMD5Correcta(loged.getContraseña(), user.getContraseña())){
+			if(Validator.contraseñaMD5Correcta(loged.getContrasena(), user.getContrasena())){
 				HttpSession session = request.getSession();
 				//System.out.println("Login correcto");
-				session.setAttribute("usuario",loged.getNombre());
+				session.setAttribute("usuario",user.getNombre());
+				session.setAttribute("email", user.getCorreo());
+				session.setAttribute("databaseList", new DatabaseDAO(conexion.getObjConexion()).recuperarDatabasesUser(user.getCorreo()));
 				response.sendRedirect(request.getContextPath() + "/admin");
 			}else {
 				//System.out.println("contraseña incorrecta");
-				response.sendRedirect(request.getContextPath() + "/index.jsp");
+				response.sendRedirect(request.getContextPath() + "/index");
 			}
 		}
 		 

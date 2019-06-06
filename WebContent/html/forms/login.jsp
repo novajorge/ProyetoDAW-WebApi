@@ -5,14 +5,14 @@
 		<div class="row">
 			<div class="input-field col s8 center-align">
 				<input placeholder="usuario o correo electronico" type="text"
-					id="user" name="user" class="validate"> <label for="user">Usuario
+					id="user" name="user" class="validate" required> <label for="user">Usuario
 					o Correo Electronico</label>
 			</div>
 		</div>
 		<div class="row">
 			<div class="input-field col s8 center-align">
 				<input placeholder="password" id="password" type="password"
-					 name="passwd" class="validate">
+					 name="passwd" class="validate" required>
 				<label for="password">Contraseña</label>
 			</div>
 		</div>

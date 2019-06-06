@@ -6,7 +6,7 @@
 		<div class="row">
 			<div class="input-field col s8 center-align">
 				<input placeholder="usuario o correo electronico" type="text"
-					id="user" name="user" class="validate"> <label for="user">Usuario
+					id="user" name="user" class="validate"> <label for="user" required>Usuario
 					o Correo Electronico</label>
 			</div>
 		</div>

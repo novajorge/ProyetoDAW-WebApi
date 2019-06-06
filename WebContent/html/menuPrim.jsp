@@ -16,8 +16,8 @@
 				<% if(session.getAttribute("usuario") == null){ %>
 					<li class=""><a class="modal-trigger" href="#login"><%= menuJson.get("menu5") %></a></li>
 				<% }else{ %>
-					<li class=""><a href="LogoutSesion"><%= menuJson.get("menu6") %></a></li>
-					<li class=""><a><%= session.getAttribute("usuario") %></a></li>
+					<li class=""><a href="<%= request.getContextPath() %>/admin"><%= session.getAttribute("usuario") %></a></li>
+					<li class=""><a href="LogoutSesion"><%= menuJson.get("menu6") %></a></li>	
 				<% } %>
 			</ul>
 		</div>
@@ -32,6 +32,6 @@
 		<% if(session.getAttribute("usuario") == null){ %>
 			<li class=""><a class="modal-trigger" href="#login"><%= menuJson.get("menu5") %></a></li>
 		<% }else{ %>
-			<li class=""><a href="#"><%= menuJson.get("menu6") %></a></li>
+			<li class=""><a href="LogoutSesion"><%= menuJson.get("menu6") %></a></li>
 		<% } %>
 	</ul>

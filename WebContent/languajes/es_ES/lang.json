@@ -4,8 +4,8 @@
 		"menu2": "Documentacion Api",
 		"menu3": "Precios",
 		"menu4": "Contacto",
-		"menu5": "Login",
-		"menu6": "Logout"
+		"menu5": "Entrar",
+		"menu6": "Salir"
 	},
 	"footer":{
 		"footer1": "Titulo del Footer",
@@ -13,5 +13,15 @@
 	},
 	"cabecera":{
 		"sadasdas":"sdada"
+	},
+	"menuAdmin":{
+		"menu1": "Bases de Datos",
+		"menu2": "Añadir Base de datos",
+		"menu3": "Listado De Apis",
+		"menu4": "Generar nueva Api",
+		"menu5": "Cuenta",
+		"menu6": "Salir",
+		"menu7": "Volver",
+		"menu8": "Panel"
 	}
 }

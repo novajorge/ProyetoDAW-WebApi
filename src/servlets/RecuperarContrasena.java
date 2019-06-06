@@ -58,7 +58,7 @@ public class RecuperarContrasena extends HttpServlet {
             return;
         } else {
             // Redirect to /userInfo
-            response.sendRedirect(request.getContextPath()+"/userInfo");
+            response.sendRedirect(request.getContextPath()+"");
         }
 	}
 

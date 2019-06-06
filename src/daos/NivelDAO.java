@@ -28,6 +28,7 @@ public class NivelDAO implements metodosDB{
 		ResultSet rs = null;
 		Nivel nivel1=null;
 		try {
+			System.out.println("Aqui");
 			st = con.prepareStatement(DbQuery.getRecuperarnivel());
 			st.setString(1,nivel.getNivel());
 			rs=st.executeQuery();

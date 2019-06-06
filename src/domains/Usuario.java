@@ -14,10 +14,11 @@ import org.json.simple.JSONObject;
  */
 public class Usuario {
 
-	private String nombre, contraseña, correo,empresa;
+	private String nombre, contrasena, correo,empresa;
 	private Nivel nivel;
 	private boolean activa;
 	private Date fechaCreacion;
+	private int resetPass;
 
 
 	//CONSTRUCTORES
@@ -33,10 +34,10 @@ public class Usuario {
 	 * @param activa
 	 * @param fechaCreacion 
 	 */
-	public Usuario(String nombre, String contraseña, String correo, String empresa, Nivel nivel, boolean activa, Date fechaCreacion) {
+	public Usuario(String nombre, String contrasena, String correo, String empresa, Nivel nivel, boolean activa, Date fechaCreacion) {
 		super();
 		this.nombre = nombre;
-		this.contraseña = contraseña;
+		this.contrasena = contrasena;
 		this.correo = correo;
 		this.fechaCreacion= fechaCreacion;
 		this.empresa = empresa;
@@ -55,12 +56,12 @@ public class Usuario {
 	}
 
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasena() {
+		return contrasena;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
 	}
 
 	public String getCorreo() {
@@ -82,7 +83,7 @@ public class Usuario {
 	public void setEmpresa(String empresa) {
 		this.empresa = empresa;
 	}
-
+		
 	public Nivel getNivel() {
 		return nivel;
 	}
@@ -106,12 +107,20 @@ public class Usuario {
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
+	public int getResetPass() {
+		return resetPass;
+	}
 
+	public void setResetPass(int resetPass) {
+		this.resetPass = resetPass;
+	}
 	
 	
 	@Override
 	public String toString() {
-		return "Usuario [nombre=" + nombre + ", contraseña=" + contraseña + ", correo=" + correo + ", empresa="
+		return "Usuario [nombre=" + nombre + ", contraseña=" + contrasena + ", correo=" + correo + ", empresa="
 				+ empresa + ", nivel=" + nivel + ", activa=" + activa + ", fechaCreacion=" + fechaCreacion + "]";
 	}
+
+
 }
