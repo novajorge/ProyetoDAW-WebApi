@@ -3,7 +3,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <div class="row">
-<h4>Añadir Base de Datos</h4>
+	<div class="row">
+		<div class="col s12 center-aling"><h4>Añadir Base de Datos</h4></div>
+	</div>
 	<form class="col s12" id="addDatabase" action="AddDatabase"
 		method="post">
 		<div class="modal-content">
