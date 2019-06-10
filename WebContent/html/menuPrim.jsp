@@ -5,19 +5,17 @@
 <div class="navbar-fixed">
 	<nav class="grey darken-3">
 		<div class=" nav-wrapper">
-			<a href="#" class="brand-logo">Logo</a> <a href="#"
+			<a href="#" class="brand-logo"><img src="resources/images/logo.png" width="64px";></a> <a href="#"
 				data-target="mobile-demo" class="sidenav-trigger"><i
 				class="material-icons"></i></a>
 			<ul class="right hide-on-med-and-down">
 				<li class=""><a href="#"><%= menuJson.get("menu1") %></a></li>
 				<li class=""><a href="#"><%= menuJson.get("menu2") %></a></li>
-				<li class=""><a href="#"><%= menuJson.get("menu3") %></a></li>
-				<li class=""><a href="#"><%= menuJson.get("menu4") %></a></li>
 				<% if(session.getAttribute("usuario") == null){ %>
-					<li class=""><a class="modal-trigger" href="#login"><%= menuJson.get("menu5") %></a></li>
+					<li class=""><a class="modal-trigger" href="#login"><%= menuJson.get("menu3") %></a></li>
 				<% }else{ %>
 					<li class=""><a href="<%= request.getContextPath() %>/admin"><%= session.getAttribute("usuario") %></a></li>
-					<li class=""><a href="LogoutSesion"><%= menuJson.get("menu6") %></a></li>	
+					<li class=""><a href="LogoutSesion"><%= menuJson.get("menu4") %></a></li>	
 				<% } %>
 			</ul>
 		</div>
@@ -27,11 +25,9 @@
 	<ul class="sidenav" id="mobile-demo">
 		<li class=""><a href="#"><%= menuJson.get("menu1") %></a></li>
 		<li class=""><a href="#"><%= menuJson.get("menu2") %></a></li>
-		<li class=""><a href="#"><%= menuJson.get("menu3") %></a></li>
-		<li class=""><a href="#"><%= menuJson.get("menu4") %></a></li>
 		<% if(session.getAttribute("usuario") == null){ %>
-			<li class=""><a class="modal-trigger" href="#login"><%= menuJson.get("menu5") %></a></li>
+			<li class=""><a class="modal-trigger" href="#login"><%= menuJson.get("menu3") %></a></li>
 		<% }else{ %>
-			<li class=""><a href="LogoutSesion"><%= menuJson.get("menu6") %></a></li>
+			<li class=""><a href="LogoutSesion"><%= menuJson.get("menu4") %></a></li>
 		<% } %>
 	</ul>

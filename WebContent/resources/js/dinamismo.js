@@ -12,6 +12,11 @@ $(document).ready(function(){
 $(document).ready(function(){
     $("#registerIn").hide();
     $("#recuperarContrasenaIn").hide();
+    $('.carousel.carousel-slider').carousel({
+        fullWidth: true,
+        indicators: true
+      });
+          
 	$("#showLogin").click(function(){
 		  if($("#showLogin").hasClass("active")){
 			  
@@ -47,5 +52,6 @@ $(document).ready(function(){
                 console.log("dsadas");
 		  }
 		});  
+	
 });
 //eventos modal, moverse en el menu

@@ -11,7 +11,8 @@ import java.sql.Date;
  */
 public class Database {
 	private String usuario,host, password, correo, name, description;
-	private  int puerto, type;
+	private  int puerto;
+	private TypesDatabase type;
 	private boolean activa;
 
 
@@ -28,8 +29,9 @@ public class Database {
  * @param correo
  * @param puerto
  * @param activa
+ * @param type
  */
-	public Database(String usuario, String name, String description ,String host, String password, String correo, int puerto, int type, boolean activa) {
+	public Database(String usuario, String name, String description ,String host, String password, String correo, int puerto, TypesDatabase type, boolean activa) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -106,19 +108,21 @@ public void setDescription(String description) {
 	this.description = description;
 }
 
-public int getType() {
+public TypesDatabase getType() {
 	return type;
 }
 
-public void setType(int type) {
+public void setType(TypesDatabase type) {
 	this.type = type;
 }
+
 @Override
 public String toString() {
 	return "Database [usuario=" + usuario + ", host=" + host + ", password=" + password + ", correo=" + correo
 			+ ", name=" + name + ", description=" + description + ", puerto=" + puerto + ", type=" + type + ", activa="
 			+ activa + "]";
 }
+
 
 	
 	

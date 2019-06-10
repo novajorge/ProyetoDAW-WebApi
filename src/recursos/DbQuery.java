@@ -21,10 +21,15 @@ public class DbQuery {
 		private static final String InsertarDatabase="Insert into basededatos (correo,name, description,host,puerto,usuario,pass,activa,type) values (?,?,?,?,?,?,?,?,?)";
 		private static final String DeleteDatabase="Delete from basededatos where correo=? and host=? and name=?";
 		private static final String UpdateDatabase = "Update basededatos set name = ?, description = ?, host = ?, puerto = ?, usuario = ?, pass = ?, activa = ?, type = ? where correo=? and host=? and name=?";
-		//falta update completo
 		
+		//typesDatabases
+		private static final String RecuperarTypes="Select id, name, connector from basededatos where id = ?";
+		private static final String RecuperarTodosTypes="Select id, name, connector from basededatos";
 		
-
+		//imagesProfile
+		private static final String InsertarImagen = "Insert into basededatos(imagen_title, imagen, email)  values(?,?,?)";
+		private static final String RecuperarImagen = "Select imagen_title, imagen, email from basededatos where email = ?";
+		private static final String RecuperarImagenes = "Update basededatos set imagen_title = ?, imagen = ?, email = ?  from basededatos where email = ?";
 		
 		//getters and setters
 		public static String getRecuperarusuario() {
@@ -76,6 +81,30 @@ public class DbQuery {
 
 		public static String getRecuperardatabasesuser() {
 			return RecuperarDatabasesUser;
+		}
+
+		public static String getUpdatedatabase() {
+			return UpdateDatabase;
+		}
+
+		public static String getRecuperartypes() {
+			return RecuperarTypes;
+		}
+
+		public static String getRecuperartodostypes() {
+			return RecuperarTodosTypes;
+		}
+
+		public static String getInsertarimagen() {
+			return InsertarImagen;
+		}
+
+		public static String getRecuperarimagen() {
+			return RecuperarImagen;
+		}
+
+		public static String getRecuperarimagenes() {
+			return RecuperarImagenes;
 		}
 
 	

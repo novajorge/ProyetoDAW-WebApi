@@ -1,11 +1,9 @@
 {
 	"menu":{
-		"menu1": "Blog",
-		"menu2": "Documentacion Api",
-		"menu3": "Precios",
-		"menu4": "Contacto",
-		"menu5": "Entrar",
-		"menu6": "Salir"
+		"menu1": "GITHUB",
+		"menu2": "COMO FUNCIONA",
+		"menu3": "ENTRAR",
+		"menu4": "SALIR"
 	},
 	"footer":{
 		"footer1": "Titulo del Footer",
