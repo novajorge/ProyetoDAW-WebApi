@@ -23,13 +23,13 @@ public class DbQuery {
 		private static final String UpdateDatabase = "Update basededatos set name = ?, description = ?, host = ?, puerto = ?, usuario = ?, pass = ?, activa = ?, type = ? where correo=? and host=? and name=?";
 		
 		//typesDatabases
-		private static final String RecuperarTypes="Select id, name, connector from basededatos where id = ?";
-		private static final String RecuperarTodosTypes="Select id, name, connector from basededatos";
+		private static final String RecuperarTypes="Select id, name, connector from typesdatabases where id = ?";
+		private static final String RecuperarTodosTypes="Select id, name, connector from typesdatabases";
 		
 		//imagesProfile
-		private static final String InsertarImagen = "Insert into basededatos(imagen_title, imagen, email)  values(?,?,?)";
-		private static final String RecuperarImagen = "Select imagen_title, imagen, email from basededatos where email = ?";
-		private static final String RecuperarImagenes = "Update basededatos set imagen_title = ?, imagen = ?, email = ?  from basededatos where email = ?";
+		private static final String InsertarImagen = "Insert into userimage(imageName, image, email)  values(?,?,?)";
+		private static final String RecuperarImagen = "Select imageName, image, email from userimage where email = ?";
+		private static final String UpdateImagen = "Update userimage set imageName = ?, image = ?  from userimage where email = ?";
 		
 		//getters and setters
 		public static String getRecuperarusuario() {
@@ -103,8 +103,8 @@ public class DbQuery {
 			return RecuperarImagen;
 		}
 
-		public static String getRecuperarimagenes() {
-			return RecuperarImagenes;
+		public static String getUpdateimagen() {
+			return UpdateImagen;
 		}
 
 	

@@ -85,34 +85,7 @@
 			      </div>
 			    </div>			    
 			  </div>
-			  			  <div class="row">
-			    <div class="col s6">
-			      <div class="card blue-grey darken-1">
-			        <div class="card-content white-text">
-			          <span class="card-title">Card Title</span>
-			          <p>I am a very simple card. I am good at containing small bits of information.
-			          I am convenient because I require little markup to use effectively.</p>
-			        </div>
-			        <div class="card-action">
-			          <a href="#">This is a link</a>
-			          <a href="#">This is a link</a>
-			        </div>
-			      </div>
-			    </div>
-			    <div class="col s6">
-			      <div class="card blue-grey darken-1">
-			        <div class="card-content white-text">
-			          <span class="card-title">Card Title</span>
-			          <p>I am a very simple card. I am good at containing small bits of information.
-			          I am convenient because I require little markup to use effectively.</p>
-			        </div>
-			        <div class="card-action">
-			          <a href="#">This is a link</a>
-			          <a href="#">This is a link</a>
-			        </div>
-			      </div>
-			    </div>			    
-			  </div>
+			  
 			<!-- Modal Structure -->
 			<div id="modal1" class="modal modal modal-fixed-footer">
 				<%@include file="html/forms/addDatabase.jsp"%>
@@ -159,8 +132,8 @@
 		</div>
 	</div>
 	</div>
-
-
+	<!--  modal cuenta -->
+	<%@include file="html/modalCuenta.jsp"%>
 
 
 	<script>
@@ -179,7 +152,8 @@
 			$('.modal').modal();
 			$('#modal2').modal();
 			
-			
+			//modal cuenta
+			$('#cuenta').modal();
 			//metodos que muestra una card
 			$('.onclickJquery').click(function() {
 

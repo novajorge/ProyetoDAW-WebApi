@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import bbdd.ConexionMariaDB;
 import daos.DatabaseDAO;
+import daos.TypesDatabaseDAO;
 import domains.Database;
 
 /**
@@ -34,6 +35,7 @@ public class UpdateDatabase extends HttpServlet {
 		try {
 		Database database = new Database();
 		Database olDatabase = new Database();
+		ConexionMariaDB conexion = new ConexionMariaDB(getServletContext().getRealPath("/WEB-INF/classes/"));
 		
 		database.setCorreo(request.getParameter("email"));
 		database.setName(request.getParameter("name"));
@@ -43,14 +45,14 @@ public class UpdateDatabase extends HttpServlet {
 		database.setActiva(Boolean.parseBoolean(request.getParameter("active")));
 		database.setUsuario(request.getParameter("user"));
 		database.setPassword(request.getParameter("pass"));
-		database.setType(Integer.valueOf(request.getParameter("type")));
+		database.setType(new TypesDatabaseDAO(conexion.getObjConexion()).recuperarType(Integer.valueOf(request.getParameter("type"))));
 		
 		olDatabase.setCorreo(request.getParameter("oldCorreo"));
 		olDatabase.setHost(request.getParameter("oldHost"));
 		olDatabase.setName(request.getParameter("oldName"));
 		
 		
-		ConexionMariaDB conexion = new ConexionMariaDB(getServletContext().getRealPath("/WEB-INF/classes/"));
+		
 		DatabaseDAO databaseDAO = new DatabaseDAO(conexion.getObjConexion());
 		databaseDAO.updateDatabase(database, olDatabase);
 		HttpSession sesion = request.getSession();

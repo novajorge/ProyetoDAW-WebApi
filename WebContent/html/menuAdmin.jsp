@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="java.util.HashMap, java.util.Map" %>
+<%@ page import="java.util.HashMap, java.util.Map, bbdd.*, daos.*, java.io.*, java.sql.Connection" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
 <% Map<String, String> menuAdminJson =  (Map<String, String>) session.getAttribute("menuAdmin"); %>
 
@@ -9,12 +9,13 @@
       <div class="background">
         <img src="resources/images/email-pattern.png">
       </div>
-      <%= menuAdminJson.get("menu5") %>
-      <a href=""><img class="circle" src="images/yuna.jpg"></a>
+      
+      <a class="modal-trigger" href="#cuenta"><%= menuAdminJson.get("menu5") %></a>
+      <a href=""><img class="circle" src=""></a>
       <a href=""><span class="name"><%= session.getAttribute("usuario") %></span></a>
       <a href=""><span class="email"><%= session.getAttribute("email") %></span></a>
     </div></li>
-    <li><a class="waves-effect" href="index"><%= menuAdminJson.get("menu8") %></a></li>
+    <li><a class="waves-effect" href=""><%= menuAdminJson.get("menu8") %></a></li>
     <li><div class="divider"></div></li>
     <li><a href="#!" class=" dropdown-trigger" data-target="dropdown1"><i class="material-icons">bookmark</i><%= menuAdminJson.get("menu1") %><i class="material-icons right">arrow_drop_down</i></a></li>  
         <ul id='dropdown1' class='dropdown-content'>

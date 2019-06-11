@@ -21,7 +21,7 @@ import exceptions.DAOException;
 public class ConexionGeneric {
 	// VARIABLES
 	private Connection objConexion;
-	private String jdbc_DRIVER, db_URL, db_Database, db_User, db_Pass;
+	private Database ;
 
 	// CONTRUCTORES
 	public ConexionGeneric(Database database) throws DAOException { 
