@@ -9,7 +9,7 @@
 				data-target="mobile-demo" class="sidenav-trigger"><i
 				class="material-icons"></i></a>
 			<ul class="right hide-on-med-and-down">
-				<li class=""><a href="#"><%= menuJson.get("menu1") %></a></li>
+				<li class=""><a href="https://github.com/novajorge/ProyetoDAW-WebApi"><%= menuJson.get("menu1") %></a></li>
 				<li class=""><a href="#"><%= menuJson.get("menu2") %></a></li>
 				<% if(session.getAttribute("usuario") == null){ %>
 					<li class=""><a class="modal-trigger" href="#login"><%= menuJson.get("menu3") %></a></li>

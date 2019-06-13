@@ -4,9 +4,11 @@ public class DbQuery {
 	
 		// usuarios	
 		private static final String RecuperarUsuario="Select nombre,contrasena,correo,fechaCreacion,empresa,nivel,activa from usuarios where nvl(nombre,'null') = ? or nvl(correo,'null')=?";
-		private static final String RecuperarCodigoResetPassword="Select passwordReset from usuarios where nvl(nombre,'null') = ? or nvl(correo,'null')=?";
-		private static final String InsertarUsuario="Insert into usuarios (nombre, contrasena, correo, fechaCreacion, empresa, nivel, activa) values (?,?,?,?,?,?,?)";
+		private static final String RecuperarCodigoResetPassword="Select passwordReset from usuarios where correo =?";
+		private static final String InsertCodigoResetPassword="Update usuarios set passwordReset = ? where correo=?";
+		private static final String InsertarUsuario="Insert into usuarios (nombre, contrasena, correo, fechaCreacion, empresa) values (?,?,?,?,?)";
 		private static final String UpdateStatusUsuario="Update usuarios set activa = ? where correo=?";
+		private static final String UpdatePasswordUsuario = "Update usuarios set contrasena = ?, passwordReset = ? where correo= ?";
 		//Falta el update completo
 		private static final String DeleteUsuario="Delete from usuarios where correo=?";
 		// nivel
@@ -105,6 +107,14 @@ public class DbQuery {
 
 		public static String getUpdateimagen() {
 			return UpdateImagen;
+		}
+
+		public static String getUpdatepasswordusuario() {
+			return UpdatePasswordUsuario;
+		}
+
+		public static String getInsertcodigoresetpassword() {
+			return InsertCodigoResetPassword;
 		}
 
 	

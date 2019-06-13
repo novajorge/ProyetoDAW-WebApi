@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <div class="row">
+	<form action="CuentaServlets" method="post">
 	<div class="input-field col s4 center-align">
 		<input placeholder="" type="text" id="name"
 			name="name" class="validate" required> 
@@ -26,4 +27,10 @@
 			id="empresa" name="empresa" class="validate"> 
 			<label for="desc">Empresa</label>
 	</div>
+	<input placeholder="" type="text"
+			id="methodDAO" name="methodDAO" class="validate hide" value="insert"> 
+			
+	<div class="col s6 "><button class="waves-effect waves-light btn-small" type="submit" name="submit">Registrarme!</button></div>	
+	
+	</form>
 </div>

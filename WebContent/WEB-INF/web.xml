@@ -12,4 +12,12 @@
     <servlet-name>admin</servlet-name>
     <url-pattern>/admin</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <servlet-name>recuperarPassword</servlet-name>
+    <jsp-file>/recuperarPassword.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>recuperarPassword</servlet-name>
+    <url-pattern>/recuperarPassword</url-pattern>
+  </servlet-mapping>
 </web-app>

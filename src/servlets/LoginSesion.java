@@ -60,7 +60,7 @@ public class LoginSesion extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/admin");
 			}else {
 				//System.out.println("contraseña incorrecta");
-				response.sendRedirect(request.getContextPath() + "/index");
+				response.sendRedirect(request.getContextPath() + "/index.jsp");
 			}
 		}
 		 

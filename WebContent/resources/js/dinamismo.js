@@ -16,7 +16,17 @@ $(document).ready(function(){
         fullWidth: true,
         indicators: true
       });
-          
+    $("#registrateButton").click(function(){
+		  if($("#showRegister").hasClass("active")){
+			  
+		  }else{
+                $("#showRegister").addClass("active");
+                $("#registerIn").show();
+                $("#showLogin").removeClass("active");
+                $("#loginIn").hide();
+                $("#recuperarContrasenaIn").hide();
+		  }
+        });
 	$("#showLogin").click(function(){
 		  if($("#showLogin").hasClass("active")){
 			  

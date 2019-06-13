@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
+import java.util.Random;
 import java.util.Set;
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,27 +17,32 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import bbdd.ConexionMariaDB;
+import daos.UsuarioDAO;
+import domains.Usuario;
+import exceptions.DAOException;
+
 public class EmailService {
 	private String host = "";
 	private int port = 0;
 	private String username = "";
 	private String password = "";
     // Put recipient’s address
-    String to = "test@example.com";
+    String to = "myapp@example.com";
 
     // Put sender’s address
-    String from = "from@example.com";
+    String from = "company@example.com";
 
-	public EmailService(String host, int port, String username, String password) {
+	public EmailService(String host, int port, String username, String password, String codigo, String email,String ruta) throws IOException {
 
 		this.host = host;
 		this.port = port;
 		this.username = username;
 		this.password = password;
-		sendMail();
+		sendMail(codigo, email, ruta);
 	}
 
-	private void sendMail() {
+	private void sendMail( String codigo, String email , String ruta) throws IOException {
 
 		Properties prop = new Properties();
 		prop.put("mail.smtp.auth", true);
@@ -68,12 +74,16 @@ public class EmailService {
 	     
 	        // Put the content of your message
             //Set key values
-            Map<String, String> input = new HashMap<String, String>();
-               input.put("{CODIGO}", "648279");
-               input.put("{EMAIL}", "test@email.com");
-               input.put("{URLRESETPASSWORD}", "dsadsasad");
-               
-	        String htmlText = readEmailFromHtml("WebContent/html/emailTemplates/forgotPass.html",input);
+            Map<String, String> input = new HashMap<String, String>(); 
+            UsuarioDAO userDAO = new UsuarioDAO(new ConexionMariaDB(ruta).getObjConexion());
+            Usuario us = new Usuario();
+            us.setCorreo(email);
+            us.setResetPass(codigo);
+            userDAO.setResetPassword(us);
+                           input.put("{CODIGO}", codigo);
+               input.put("{EMAIL}", email);
+               input.put("{URLRESETPASSWORD}", "dsadsasad");  
+	        String htmlText = readEmailFromHtml(ruta+"conf/forgotPass.html",input);
 	        message.setContent(htmlText, "text/html");
 
 	        // Send message
@@ -83,7 +93,10 @@ public class EmailService {
 
 	          } catch (MessagingException e) {
 	             throw new RuntimeException(e);
-	          }
+	          } catch (DAOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 	//Method to replace the values for keys
 	protected String readEmailFromHtml(String filePath, Map<String, String> input)
@@ -125,10 +138,6 @@ public class EmailService {
 	      ex.printStackTrace();
 	    }
 	    return contents.toString();
-	}
-
-	public static void main(String ... args) {
-		new EmailService("smtp.mailtrap.io", 2525, "64bde6b0e2b215", "c4ca1e00bd9efa");
 	}
 
 }

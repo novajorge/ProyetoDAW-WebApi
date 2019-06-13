@@ -18,7 +18,7 @@ public class Usuario {
 	private Nivel nivel;
 	private boolean activa;
 	private Date fechaCreacion;
-	private int resetPass;
+	private String resetPass;
 
 
 	//CONSTRUCTORES
@@ -107,12 +107,12 @@ public class Usuario {
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
-	public int getResetPass() {
+	public String getResetPass() {
 		return resetPass;
 	}
 
-	public void setResetPass(int resetPass) {
-		this.resetPass = resetPass;
+	public void setResetPass(String string) {
+		this.resetPass = string;
 	}
 	
 	

@@ -1,4 +1,5 @@
 {
+
 	"menu":{
 		"menu1": "GITHUB",
 		"menu2": "COMO FUNCIONA",
@@ -6,23 +7,13 @@
 		"menu4": "SALIR"
 	},
 	"footer":{
-		"footer1": "APP API EASY",
-		"footer2": "La app que te hace mas facil la gestion de apis"
+		"footer1": "La app generadora de api's'",
+		"footer2": "Ahorra tiempo y dinero facilmente"
 	},
 	"cabecera":{
 		"sadasdas":"sdada"
 	},
-	"menuAdmin":{
-		"menu1": "Bases de Datos",
-		"menu2": "Añadir Base de datos",
-		"menu3": "Listado De Apis",
-		"menu4": "Generar nueva Api",
-		"menu5": "Cuenta",
-		"menu6": "Salir",
-		"menu7": "Volver",
-		"menu8": "Panel"
-	},
-	"slider":{
+	"slider1234":{
 		"slider1": "¿ Que hacemos ?",
 		"slider1.1": "Cogemos una base de datos, la analizamos y la convertimos en una api",
 		"slider1.2": "Asi de facil!",
@@ -33,5 +24,15 @@
 		"slider6": "Selecciona las querys",
 		"slider7": "Gratis!",
 		"slider8": "En dos clicks"
+	},
+	"menuAdmin":{
+		"menu1": "Bases de Datos",
+		"menu2": "Añadir Base de datos",
+		"menu3": "Listado De Apis",
+		"menu4": "Generar nueva Api",
+		"menu5": "Cuenta",
+		"menu6": "Salir",
+		"menu7": "Volver",
+		"menu8": "Panel"
 	}
 }

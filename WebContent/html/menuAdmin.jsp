@@ -11,7 +11,7 @@
       </div>
       
       <a class="modal-trigger" href="#cuenta"><%= menuAdminJson.get("menu5") %></a>
-      <a href=""><img class="circle" src=""></a>
+      <a href=""><img class="circle" src="resources/images/profile.png"></a>
       <a href=""><span class="name"><%= session.getAttribute("usuario") %></span></a>
       <a href=""><span class="email"><%= session.getAttribute("email") %></span></a>
     </div></li>

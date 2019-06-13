@@ -51,4 +51,5 @@
 		<input type="text" id="oldCorreo" name="oldCorreo" class="hide">
 		
 		</div>
+
 	</div>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import domains.Usuario;
+import services.EmailService;
 import util.Validator;
 
 /**
@@ -53,12 +54,14 @@ public class RecuperarContrasena extends HttpServlet {
         if (!valid) {
             request.setAttribute("errorString", errorString);
             RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("index.jsp");
-           
+            
             dispatcher.forward(request, response);
             return;
         } else {
             // Redirect to /userInfo
-            response.sendRedirect(request.getContextPath()+"");
+        	EmailService em = new EmailService("smtp.mailtrap.io", 2525, "64bde6b0e2b215", "c4ca1e00bd9efa","231231231","jorgear96@gmail.com",getServletContext().getRealPath("/WEB-INF/classes/"));
+            //response.sendRedirect(request.getContextPath()+"");
+        	response.sendRedirect(request.getContextPath() + "/recuperarPassword");
         }
 	}
 

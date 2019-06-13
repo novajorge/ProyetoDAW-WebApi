@@ -2,14 +2,22 @@ package servlets;
 
 import java.io.File;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bbdd.ConexionMariaDB;
-import daos.imagenProfileDAO;
+import daos.DatabaseDAO;
+import daos.TypesDatabaseDAO;
+import daos.UsuarioDAO;
+import domains.Database;
+import domains.Usuario;
 
 /**
  * Servlet implementation class CuentaServlets
@@ -33,14 +41,37 @@ public class CuentaServlets extends HttpServlet {
 		// TODO Auto-generated method stub
 				try {
 					ConexionMariaDB conexion = new ConexionMariaDB(getServletContext().getRealPath("/WEB-INF/classes/"));
-					imagenProfileDAO img = new imagenProfileDAO(conexion.getObjConexion());
-					File fileImg = new File(request.getParameter("img"));
+					
 					switch (request.getParameter("methodDAO")) {
 					case "insert":
-						img.insertImage(fileImg, "profile", (String) request.getSession().getAttribute("email"));
+						try {
+							Usuario usuario = new Usuario();
+							MessageDigest md = MessageDigest.getInstance("MD5"); 
+							byte[] messageDigest = md.digest(request.getParameter("pass").getBytes());
+							BigInteger no = new BigInteger(1, messageDigest);
+					        String hashtext = no.toString(16); 
+				            while (hashtext.length() < 32) { 
+				                hashtext = "0" + hashtext; 
+				            }
+							usuario.setNombre(request.getParameter("name"));
+							usuario.setContrasena(hashtext);
+							usuario.setCorreo(request.getParameter("email"));
+							usuario.setEmpresa(request.getParameter("empresa"));
+							UsuarioDAO usuarioDAO = new UsuarioDAO(conexion.getObjConexion());
+							System.out.println(usuario);
+							usuarioDAO.insertarusuario(usuario);
+							HttpSession sesion = request.getSession();
+							sesion.setAttribute("usuario",usuario.getNombre());
+							sesion.setAttribute("email", usuario.getCorreo());
+							sesion.setAttribute("databaseList", new DatabaseDAO(conexion.getObjConexion()).recuperarDatabasesUser(usuario.getCorreo()));
+							response.sendRedirect(request.getContextPath() + "/admin");
+							
+							}catch (Exception e) {
+								System.out.println("error:"+e);
+							}
 						break;
 					case "update":
-						img.updateImage(fileImg, "profile", (String) request.getSession().getAttribute("email"));
+						
 						break;
 					case "delete":
 						

@@ -50,7 +50,7 @@ public class AddDatabase extends HttpServlet {
 		database.setActiva(Boolean.parseBoolean(request.getParameter("active")));
 		database.setUsuario(request.getParameter("user"));
 		database.setPassword(request.getParameter("pass"));
-		database.setType(new TypesDatabaseDAO(conexion.getObjConexion()).recuperarType(Integer.valueOf(request.getParameter("type"))));
+		database.setType(new TypesDatabaseDAO(conexion.getObjConexion()).recuperarType(Integer.valueOf(request.getParameter("selectTypes"))));
 		
 		System.out.println(database.toString());
 		

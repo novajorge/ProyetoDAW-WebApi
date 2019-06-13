@@ -86,7 +86,7 @@ public class DatabaseDAO implements metodosDB {
 			st.setString(7,in_Database.getPassword());
 			st.setBoolean(8,in_Database.isActiva());
 			st.setInt(9,in_Database.getType().getId());
-			System.out.println(st.toString());
+
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e);
