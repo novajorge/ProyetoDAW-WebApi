@@ -142,7 +142,9 @@ public class CuentaServlets extends HttpServlet {
 									
 						} catch (Exception e) {
 							System.out.println(e);
-							
+							HttpSession sesion = request.getSession();
+							sesion.setAttribute("ErrorUpdateDatabase", true);
+							response.sendRedirect(request.getContextPath() + "/admin");
 							break;
 						}
 							

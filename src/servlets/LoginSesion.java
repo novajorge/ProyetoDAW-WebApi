@@ -63,12 +63,17 @@ public class LoginSesion extends HttpServlet {
 			}else {
 				//System.out.println("contraseña incorrecta");
 				conexion.getObjConexion().close();
+				HttpSession sesion = request.getSession();
+				sesion.setAttribute("ContraseñaIncorrecta", true);
 				response.sendRedirect(request.getContextPath() + "/index.jsp");
 			}
 		}
 		 
 		}catch (Exception e) {
 			System.out.println("error:"+e);
+			HttpSession sesion = request.getSession();
+			sesion.setAttribute("errorGeneric", true);
+			response.sendRedirect(request.getContextPath() + "/index.jsp");
 		}
 	}
 

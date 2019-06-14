@@ -1,35 +1,38 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.json.Json;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import bbdd.ConexionGeneric;
-import bbdd.ConexionMariaDB;
-import daos.DatabaseDAO;
-import daos.TypesDatabaseDAO;
+import daos.TablesDAO;
 import domains.Database;
+import domains.Describe;
 
 /**
- * Servlet implementation class pingDatabase
+ * Servlet implementation class getDescribeTable
  */
-@WebServlet("/pingDatabase")
-public class pingDatabase extends HttpServlet {
+@WebServlet("/getDescribeTable")
+public class getDescribeTable extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public pingDatabase() {
+    public getDescribeTable() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -39,36 +42,34 @@ public class pingDatabase extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			ConexionMariaDB conPrin = new ConexionMariaDB(getServletContext().getRealPath("/WEB-INF/classes/"));
-			DatabaseDAO dao = new DatabaseDAO(conPrin.getObjConexion());
-			Database da = new Database();
-			Database temp = new Database();
-			temp.setHost(request.getParameter("host"));
-			temp.setPuerto(Integer.valueOf(request.getParameter("port")));
-			temp.setSchema(request.getParameter("schema"));
-			temp.setUsuario(request.getParameter("user"));
-			temp.setPassword(request.getParameter("pass"));
-			temp.setType(new TypesDatabaseDAO(conPrin.getObjConexion()).recuperarType(Integer.valueOf(request.getParameter("type"))));
-			System.out.println(temp);
+			Gson gson = new Gson();
+			Database database = gson.fromJson(request.getParameter("database"), Database.class);
 			
-			ConexionGeneric con = new ConexionGeneric(temp);
+			/*System.out.println("Parametros recibidos");
+			System.out.println(request.getParameter("table1"));
+			System.out.println(database);
+			System.out.println("--------------------");*/
+			
+			ConexionGeneric con = new ConexionGeneric(database);
+			
+			TablesDAO tables = new TablesDAO(con.getObjConexion());
+			
+			List<Describe> listDescribes = tables.recuperarDescribe("database."+(String) request.getParameter("table1"));
 
-			conPrin.getObjConexion().close();
+			Map<String, List<Describe>> mapita = new HashMap<String, List<Describe>>();
+			mapita.put(request.getParameter("tableId"), listDescribes);
 			
-			
-			String databaseJsonString = new Gson().toJson(temp);
-			System.out.println(databaseJsonString);
+			String tablestoString = new Gson().toJson(mapita);
+			System.out.println(tablestoString);
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
-			response.getWriter().write(databaseJsonString);
+			response.getWriter().write(tablestoString);
+
 			con.getObjConexion().close();
 			
-		} catch (Exception e) {
-			response.setStatus(400);
+		}catch (Exception e) {
 			System.out.println(e);
-			
 		}
-
 	}
 
 	/**

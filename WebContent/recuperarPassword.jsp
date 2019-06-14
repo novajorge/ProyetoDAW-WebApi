@@ -55,5 +55,9 @@
 	<!--JavaScript at end of body for optimized loading-->
 	<script type="text/javascript" src="resources/js/materialize.min.js"></script>
 	<script type="text/javascript" src="resources/js/dinamismo.js"></script>
+	
+	<%if (session.getAttribute("EmailSend") != null) {%>
+	<script type="text/javascript">M.toast({html : 'Email Send, look ur email!',classes : 'blue'})</script>
+	<%session.setAttribute("EmailSend", null);}%>
 </body>
 </html>

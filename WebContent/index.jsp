@@ -59,5 +59,13 @@
  <script type="text/javascript">M.toast({html: 'Password Change!'}) </script>
  	<% session.setAttribute("PasswordChange", null);%>
  <%} %>
+ 
+ 	<%if (session.getAttribute("ContraseñaIncorrecta") != null) {%>
+	<script type="text/javascript">M.toast({html : 'Contraseña Incorrecta!',classes : 'red'})</script>
+	<%session.setAttribute("ContraseñaIncorrecta", null);}%>
+	
+	 	<%if (session.getAttribute("errorGeneric") != null) {%>
+	<script type="text/javascript">M.toast({html : 'Error Generico!',classes : 'red'})</script>
+	<%session.setAttribute("errorGeneric", null);}%>
 </body>
 </html>

@@ -65,7 +65,8 @@ public class UpdateDatabase extends HttpServlet {
 		
 		}catch (Exception e) {
 			System.out.println("error:"+e);
-			
+			HttpSession sesion = request.getSession();
+			sesion.setAttribute("ErrorUpdateDatabase", true);
 			response.sendRedirect(request.getContextPath() + "/admin");
 			
 		}

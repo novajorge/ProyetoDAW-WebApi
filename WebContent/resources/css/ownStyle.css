@@ -4,3 +4,10 @@
 	
 }
 .modal { max-height: 100%; overflow: visible}
+.card .card-content{
+	
+    overflow: hidden;
+}
+.tabs .tab a:focus.active {
+	background-color: #ab47b;
+}

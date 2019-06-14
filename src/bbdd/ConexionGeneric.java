@@ -25,19 +25,14 @@ public class ConexionGeneric {
 	// CONTRUCTORES
 	public ConexionGeneric(Database database) throws DAOException { 
 		try {
-			System.out.println("Conectando Datbase");
-			System.out.println(database.toString());
 			if(database.getType().getName().equals("MySQL")) {
 				Class.forName("com.mysql.cj.jdbc.Driver"); 
-				System.out.println("MySQL");
 			}if(database.getType().getName().equals("MariaDB")) {
 				Class.forName("org.mariadb.jdbc.Driver"); 
-				System.out.println("MariaDB");
 			}if(database.getType().getName().equals("Oracle")) {
 				Class.forName("com.mysql.jdbc.Driver"); 
-				System.out.println("Oracle");
 			}
-			System.out.println(database.getType().getConnector() + database.getHost()+":"+database.getPuerto() + "/" + database.getSchema());
+			//System.out.println(database.getType().getConnector() + database.getHost()+":"+database.getPuerto() + "/" + database.getSchema());
 			objConexion = DriverManager.getConnection(database.getType().getConnector() + database.getHost()+":"+database.getPuerto() + "/" + database.getSchema(), database.getUsuario(),database.getPassword());
 			
 		} catch (ClassNotFoundException e) {

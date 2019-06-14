@@ -67,6 +67,8 @@ public class AddDatabase extends HttpServlet {
 		
 		}catch (Exception e) {
 			System.out.println("error:"+e);
+			HttpSession sesion = request.getSession();
+			sesion.setAttribute("ErrorAddDatabase", true);
 			response.sendRedirect(request.getContextPath() + "/admin");
 		}
 	}

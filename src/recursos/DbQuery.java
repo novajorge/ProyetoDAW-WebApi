@@ -33,6 +33,11 @@ public class DbQuery {
 		private static final String RecuperarImagen = "Select imageName, image, email from userimage where email = ?";
 		private static final String UpdateImagen = "Update userimage set imageName = ?, image = ?  from userimage where email = ?";
 		
+		//genericos tabla
+		private static final String verTablas = "SHOW TABLES";
+		//private static final String verDatosTabla = "DESCRIBE ?";
+		private static final String verInfoSchema = "SELECT * FROM INFORMATION_SCHEMA.tables WHERE TABLE_SCHEMA= ? ";
+		
 		//getters and setters
 		public static String getRecuperarusuario() {
 			return RecuperarUsuario;
@@ -119,6 +124,18 @@ public class DbQuery {
 
 		public static String getUpdateusuario() {
 			return UpdateUsuario;
+		}
+
+		public static String getVertablas() {
+			return verTablas;
+		}
+
+		/*public static String getVerdatostabla() {
+			return verDatosTabla;
+		}*/
+
+		public static String getVerinfoschema() {
+			return verInfoSchema;
 		}
 
 	

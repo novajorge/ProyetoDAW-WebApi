@@ -29,9 +29,29 @@
 			<!-- // Menu web // -->
 		</div>
 		<div class="col s9">
-			<!--  card api -->
-			<%@include file="html/cardApi.jsp"%>
-			<!-- //card api // -->
+			<!--  mensaje -->
+			  <div class="row">
+			    <div class="col s12">
+			      <div class="card blue-grey darken-1">
+			        <div class="card-content white-text">
+			          <span class="card-title">Aplicacion de generacion de Consultas Api</span>
+			          <p>La aplicacion actualmente esta en fase alpha, muchas funcionalidades pueden no estar implementadas.</p>
+			          <p>Recuerda, el codigo es de libre uso, puedes acceder al github para continuar el desarrollo o añadir nuevas funcionalidades.</p>
+			        </div>
+			
+			      </div>
+			    </div>
+  				</div>
+  			<div class="row" id="contentShow">
+  				<div class="col s3">1</div>
+  				<div class="col s3">2</div>
+  				<div class="col s3">3</div>
+  			</div>
+  			
+  			<div id="ocultarCardAPi" class="">
+				<%@include file="html/cardApi.jsp"%>
+				<!-- //card api // -->
+			</div>
 
 			<a class="hide" id="userHide"><%=(String) session.getAttribute("usuario")%></a>
 			<a class="hide" id="emailHide"><%=(String) session.getAttribute("email")%></a>
@@ -169,19 +189,21 @@
 			}
 	%>
 
-	<%
-		if (session.getAttribute("PasswordIncorrect") != null) {
-	%>
-	<script type="text/javascript">
-		M.toast({
-			html : 'Old Password incorrect!',
-			classes : 'red'
-		})
-	</script>
-	<%
-		session.setAttribute("PasswordIncorrect", null);
-			}
-	%>
+	<%if (session.getAttribute("PasswordIncorrect") != null) {%>
+	<script type="text/javascript">M.toast({html : 'Old Password incorrect!',classes : 'red'})</script>
+	<%session.setAttribute("PasswordIncorrect", null);}%>
+	
+	<%if (session.getAttribute("ErrorAddDatabase") != null) {%>
+	<script type="text/javascript">M.toast({html : 'Error Añadir Base de datos!',classes : 'red'})</script>
+	<%session.setAttribute("ErrorAddDatabase", null);}%>
+	
+	<%if (session.getAttribute("ErrorUpdateDatabase") != null) {%>
+	<script type="text/javascript">M.toast({html : 'Error Update Base de datos!',classes : 'red'})</script>
+	<%session.setAttribute("ErrorUpdateDatabase", null);}%>
+	
+
+	
+	
 </body>
 </html>
 <%
