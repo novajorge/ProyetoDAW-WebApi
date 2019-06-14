@@ -22,7 +22,7 @@
 		"menu7": "Volver",
 		"menu8": "Panel"
 	},
-	"slider":{
+	"indexSlider":{
 		"slider1": "¿ Que hacemos ?",
 		"slider1.1": "Cogemos una base de datos, la analizamos y la convertimos en una api",
 		"slider1.2": "Asi de facil!",

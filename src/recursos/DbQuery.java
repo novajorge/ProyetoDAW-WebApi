@@ -9,7 +9,7 @@ public class DbQuery {
 		private static final String InsertarUsuario="Insert into usuarios (nombre, contrasena, correo, fechaCreacion, empresa) values (?,?,?,?,?)";
 		private static final String UpdateStatusUsuario="Update usuarios set activa = ? where correo=?";
 		private static final String UpdatePasswordUsuario = "Update usuarios set contrasena = ?, passwordReset = ? where correo= ?";
-		//Falta el update completo
+		private static final String UpdateUsuario = "Update usuarios set nombre=?, contrasena=?, empresa=? where correo= ?";
 		private static final String DeleteUsuario="Delete from usuarios where correo=?";
 		// nivel
 		private static final String RecuperarNivel="Select nivel, solicitudes, tiempo from niveles where nivel = ?";
@@ -17,12 +17,12 @@ public class DbQuery {
 		//mirar que mas necesito aqui
 		
 		//databases
-		private static final String RecuperarDatabase="Select correo, name, description, host, puerto, usuario, pass, activa, type from basededatos where correo = ? and name=? and host = ?";
-		private static final String RecuperarDatabases="Select correo, name, description, host, puerto, usuario, pass, activa,type from basededatos";
-		private static final String RecuperarDatabasesUser="Select correo, name, description, host, puerto, usuario, pass, activa, type from basededatos where correo = ?";
-		private static final String InsertarDatabase="Insert into basededatos (correo,name, description,host,puerto,usuario,pass,activa,type) values (?,?,?,?,?,?,?,?,?)";
+		private static final String RecuperarDatabase="Select correo, name, description, host, puerto, usuario, pass, activa, type , nameSchema from basededatos where correo = ? and name=? and host = ?";
+		private static final String RecuperarDatabases="Select correo, name, description, host, puerto, usuario, pass, activa,type , nameSchema from basededatos";
+		private static final String RecuperarDatabasesUser="Select correo, name, description, host, puerto, usuario, pass, activa, type,nameSchema  from basededatos where correo = ?";
+		private static final String InsertarDatabase="Insert into basededatos (correo,name, description,host,puerto,usuario,pass,activa,type, nameSchema) values (?,?,?,?,?,?,?,?,?,?)";
 		private static final String DeleteDatabase="Delete from basededatos where correo=? and host=? and name=?";
-		private static final String UpdateDatabase = "Update basededatos set name = ?, description = ?, host = ?, puerto = ?, usuario = ?, pass = ?, activa = ?, type = ? where correo=? and host=? and name=?";
+		private static final String UpdateDatabase = "Update basededatos set name = ?, description = ?, host = ?, puerto = ?, usuario = ?, pass = ?, activa = ?, type = ?, nameSchema = ? where correo=? and host=? and name=?";
 		
 		//typesDatabases
 		private static final String RecuperarTypes="Select id, name, connector from typesdatabases where id = ?";
@@ -115,6 +115,10 @@ public class DbQuery {
 
 		public static String getInsertcodigoresetpassword() {
 			return InsertCodigoResetPassword;
+		}
+
+		public static String getUpdateusuario() {
+			return UpdateUsuario;
 		}
 
 	

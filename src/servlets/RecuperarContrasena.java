@@ -61,6 +61,7 @@ public class RecuperarContrasena extends HttpServlet {
             // Redirect to /userInfo
         	EmailService em = new EmailService("smtp.mailtrap.io", 2525, "64bde6b0e2b215", "c4ca1e00bd9efa","231231231","jorgear96@gmail.com",getServletContext().getRealPath("/WEB-INF/classes/"));
             //response.sendRedirect(request.getContextPath()+"");
+        	
         	response.sendRedirect(request.getContextPath() + "/recuperarPassword");
         }
 	}

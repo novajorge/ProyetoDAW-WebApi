@@ -39,7 +39,7 @@ public class DatabaseDAO implements metodosDB {
 			TypesDatabaseDAO databaseDAO = new TypesDatabaseDAO(con);
 			rs=st.executeQuery();
 			if (rs.next()){	
-				database= new Database(rs.getString("usuario"), rs.getString("name"),rs.getString("description"), rs.getString("host"), rs.getString("pass"), rs.getString("correo") , rs.getInt("puerto"),databaseDAO.recuperarType(rs.getInt("type")), rs.getBoolean("activa"));
+				database= new Database(rs.getString("usuario"), rs.getString("name"),rs.getString("description"), rs.getString("host"), rs.getString("pass"), rs.getString("correo") , rs.getInt("puerto"),databaseDAO.recuperarType(rs.getInt("type")), rs.getBoolean("activa"), rs.getString("nameSchema"));
 				System.out.println(database);
 			}	
 		} catch (SQLException e) {
@@ -61,7 +61,9 @@ public class DatabaseDAO implements metodosDB {
 			TypesDatabaseDAO databaseDAO = new TypesDatabaseDAO(con);
 			rs=st.executeQuery();
 			while (rs.next()){	
-				list_Databases.add(new Database(rs.getString("usuario"), rs.getString("name"),rs.getString("description"), rs.getString("host"), rs.getString("pass"), rs.getString("correo") , rs.getInt("puerto"),databaseDAO.recuperarType(rs.getInt("type")), rs.getBoolean("activa")));
+				//System.out.println(rs.toString());
+				list_Databases.add(new Database(rs.getString("usuario"), rs.getString("name"),rs.getString("description"), rs.getString("host"), rs.getString("pass"), rs.getString("correo") , rs.getInt("puerto"),databaseDAO.recuperarType(rs.getInt("type")), rs.getBoolean("activa"), rs.getString("nameSchema")));
+				System.out.println(new Database(rs.getString("usuario"), rs.getString("name"),rs.getString("description"), rs.getString("host"), rs.getString("pass"), rs.getString("correo") , rs.getInt("puerto"),databaseDAO.recuperarType(rs.getInt("type")), rs.getBoolean("activa"), rs.getString("nameSchema")).toString());
 			}	
 		} catch (SQLException e) {
 			System.out.println(e);
@@ -86,7 +88,7 @@ public class DatabaseDAO implements metodosDB {
 			st.setString(7,in_Database.getPassword());
 			st.setBoolean(8,in_Database.isActiva());
 			st.setInt(9,in_Database.getType().getId());
-
+			st.setString(10,in_Database.getSchema());
 			st.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println(e);
@@ -118,7 +120,10 @@ public class DatabaseDAO implements metodosDB {
 	public void updateDatabase(Database in_Database, Database old_DatabaseData) throws DAOException {
 		PreparedStatement st = null;
 		try {
+			System.out.println("321231");
 			st = con.prepareStatement(DbQuery.getUpdateDatabase());
+			System.out.println("asdsaasdasdasd");
+			System.out.println(in_Database);
 			st.setString(1,in_Database.getName());
 			st.setString(2,in_Database.getDescription());
 			st.setString(3,in_Database.getHost());
@@ -127,10 +132,11 @@ public class DatabaseDAO implements metodosDB {
 			st.setString(6,in_Database.getPassword());
 			st.setBoolean(7,in_Database.isActiva());
 			st.setInt(8,in_Database.getType().getId());
+			st.setString(9,in_Database.getSchema());
 			
-			st.setString(9,old_DatabaseData.getCorreo());
-			st.setString(10,old_DatabaseData.getHost());
-			st.setString(11,old_DatabaseData.getName());
+			st.setString(10,old_DatabaseData.getCorreo());
+			st.setString(11,old_DatabaseData.getHost());
+			st.setString(12,old_DatabaseData.getName());
 			
 			System.out.println(st.toString());
 			st.executeUpdate();

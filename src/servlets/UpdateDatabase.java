@@ -45,23 +45,29 @@ public class UpdateDatabase extends HttpServlet {
 		database.setActiva(Boolean.parseBoolean(request.getParameter("active")));
 		database.setUsuario(request.getParameter("user"));
 		database.setPassword(request.getParameter("pass"));
-		database.setType(new TypesDatabaseDAO(conexion.getObjConexion()).recuperarType(Integer.valueOf(request.getParameter("type"))));
+		database.setSchema(request.getParameter("schema"));
+		database.setType(new TypesDatabaseDAO(conexion.getObjConexion()).recuperarType(Integer.valueOf(request.getParameter("selectTypes"))));
+
 		
 		olDatabase.setCorreo(request.getParameter("oldCorreo"));
 		olDatabase.setHost(request.getParameter("oldHost"));
 		olDatabase.setName(request.getParameter("oldName"));
 		
-		
+
 		
 		DatabaseDAO databaseDAO = new DatabaseDAO(conexion.getObjConexion());
 		databaseDAO.updateDatabase(database, olDatabase);
 		HttpSession sesion = request.getSession();
 		sesion.setAttribute("DatabaseUpdate", true);
 		sesion.setAttribute("databaseList", new DatabaseDAO(conexion.getObjConexion()).recuperarDatabasesUser((String) sesion.getAttribute("email")));
+		conexion.getObjConexion().close();
 		response.sendRedirect(request.getContextPath() + "/admin");
 		
 		}catch (Exception e) {
 			System.out.println("error:"+e);
+			
+			response.sendRedirect(request.getContextPath() + "/admin");
+			
 		}
 	}
 

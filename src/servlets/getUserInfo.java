@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import bbdd.ConexionMariaDB;
-import daos.DatabaseDAO;
-import domains.Database;
+import daos.UsuarioDAO;
+import domains.Usuario;
 
 /**
- * Servlet implementation class typesServlet
+ * Servlet implementation class getUserInfo
  */
-@WebServlet("/TypesServlet")
-public class TypesServlet extends HttpServlet {
+@WebServlet("/getUserInfo")
+public class getUserInfo extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public TypesServlet() {
+    public getUserInfo() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,24 +33,20 @@ public class TypesServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-
-			Database database = new Database();
-			String name = request.getParameter("name").trim();
-			String host = request.getParameter("host").trim();
-			String email = (String) request.getSession().getAttribute("email");
-			database.setCorreo(email);
-			database.setHost(host);
-			database.setName(name);
 			
+			System.out.println("asddasasdasddas");
 			ConexionMariaDB conexion = new ConexionMariaDB(getServletContext().getRealPath("/WEB-INF/classes/"));
-			DatabaseDAO databaseDAO = new DatabaseDAO(conexion.getObjConexion());
-			String databaseJsonString = new Gson().toJson(databaseDAO.recuperarDatabase(database));
-			System.out.println(databaseJsonString);
+			UsuarioDAO userBD = new UsuarioDAO(conexion.getObjConexion());
+			Usuario loged = new Usuario();
+			loged.setCorreo( (String) request.getSession().getAttribute("email"));
+			loged.setNombre( (String) request.getSession().getAttribute("usuario"));
+			Usuario user = userBD.recuperarUsuario(loged);
+			String usuarioJsonString = new Gson().toJson(user);
+			System.out.println(usuarioJsonString);
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(usuarioJsonString);
 			conexion.getObjConexion().close();
-			response.getWriter().write(databaseJsonString);
-			
 		}catch (Exception e) {
 			System.out.println(e);
 		}

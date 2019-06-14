@@ -27,15 +27,15 @@
 	<%@include file="html/loginModal.jsp"%>
 	<!--  // Modal para el login y el registro // -->
 
-	  <div class="carousel carousel-slider center " style="height: 720px;">
+	  <div class="carousel carousel-slider center " style="height: 680px;">
     <div class="carousel-fixed-item center">
       <a id="registrateButton" class="btn waves-effect white grey-text darken-text-2 modal-trigger"  href="#login">Registrate</a>
     </div>
     <div class="carousel-item amber white-text" href="#two!">
-      <!-- <h2></h2>
-      <p class="white-text"></p>
+      <h2>Prueba a unirte y prueba nuestra herramienta</h2>
+      <p class="white-text">Es gratis !!</p>
       
-      <p class="white-text"></p> -->
+      <p class="white-text">Facil y sencilla</p>
     </div>
     <div class="carousel-item green white-text" href="#three!">
       <h2>Un proyecto Open Source</h2>

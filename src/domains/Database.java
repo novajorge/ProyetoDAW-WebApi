@@ -10,7 +10,7 @@ import java.sql.Date;
  *
  */
 public class Database {
-	private String usuario,host, password, correo, name, description;
+	private String usuario,host, password, correo, name, description, schema;
 	private  int puerto;
 	private TypesDatabase type;
 	private boolean activa;
@@ -30,8 +30,9 @@ public class Database {
  * @param puerto
  * @param activa
  * @param type
+ * @param schema
  */
-	public Database(String usuario, String name, String description ,String host, String password, String correo, int puerto, TypesDatabase type, boolean activa) {
+	public Database(String usuario, String name, String description ,String host, String password, String correo, int puerto, TypesDatabase type, boolean activa, String schema) {
 		super();
 		this.name = name;
 		this.description = description;
@@ -42,6 +43,7 @@ public class Database {
 		this.puerto = puerto;
 		this.activa = activa;
 		this.type = type;
+		this.schema= schema;
 	}
 
 public String getUsuario() {
@@ -116,11 +118,21 @@ public void setType(TypesDatabase type) {
 	this.type = type;
 }
 
+
+
 @Override
 public String toString() {
 	return "Database [usuario=" + usuario + ", host=" + host + ", password=" + password + ", correo=" + correo
-			+ ", name=" + name + ", description=" + description + ", puerto=" + puerto + ", type=" + type + ", activa="
-			+ activa + "]";
+			+ ", name=" + name + ", description=" + description + ", schema=" + schema + ", puerto=" + puerto
+			+ ", type=" + type + ", activa=" + activa + "]";
+}
+
+public String getSchema() {
+	return schema;
+}
+
+public void setSchema(String schema) {
+	this.schema = schema;
 }
 
 

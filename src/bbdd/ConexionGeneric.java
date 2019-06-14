@@ -21,13 +21,25 @@ import exceptions.DAOException;
 public class ConexionGeneric {
 	// VARIABLES
 	private Connection objConexion;
-	private Database ;
 
 	// CONTRUCTORES
 	public ConexionGeneric(Database database) throws DAOException { 
 		try {
-			Class.forName(jdbc_DRIVER); 
-				objConexion = DriverManager.getConnection("jdbc:mariadb://" + db_URL + "/" + db_Database, db_User,db_Pass);
+			System.out.println("Conectando Datbase");
+			System.out.println(database.toString());
+			if(database.getType().getName().equals("MySQL")) {
+				Class.forName("com.mysql.cj.jdbc.Driver"); 
+				System.out.println("MySQL");
+			}if(database.getType().getName().equals("MariaDB")) {
+				Class.forName("org.mariadb.jdbc.Driver"); 
+				System.out.println("MariaDB");
+			}if(database.getType().getName().equals("Oracle")) {
+				Class.forName("com.mysql.jdbc.Driver"); 
+				System.out.println("Oracle");
+			}
+			System.out.println(database.getType().getConnector() + database.getHost()+":"+database.getPuerto() + "/" + database.getSchema());
+			objConexion = DriverManager.getConnection(database.getType().getConnector() + database.getHost()+":"+database.getPuerto() + "/" + database.getSchema(), database.getUsuario(),database.getPassword());
+			
 		} catch (ClassNotFoundException e) {
 			throw new DAOException("no se ha cargado los controladores jdbc", e);
 		} catch (SQLException e) {

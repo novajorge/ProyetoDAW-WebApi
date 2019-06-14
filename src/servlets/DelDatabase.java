@@ -50,6 +50,7 @@ public class DelDatabase extends HttpServlet {
 			
 			sesion.setAttribute("DatabaseDelete", true);
 			sesion.setAttribute("databaseList", new DatabaseDAO(conexion.getObjConexion()).recuperarDatabasesUser((String) sesion.getAttribute("email")));
+			conexion.getObjConexion().close();
 			response.sendRedirect(request.getContextPath() + "/admin");
 		}catch (Exception e) {
 			System.out.println(e);

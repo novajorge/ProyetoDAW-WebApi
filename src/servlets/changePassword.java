@@ -6,6 +6,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -62,7 +63,12 @@ public class changePassword extends HttpServlet {
 			
 			UsuarioDAO usurDAO = new UsuarioDAO(conexion.getObjConexion());
 			
-			
+			try {
+				conexion.getObjConexion().close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			String codigo = usurDAO.recuperarCodigoResetPassword(user).getResetPass();
 			if(codigo != null) {
 				System.out.println(user.getResetPass());

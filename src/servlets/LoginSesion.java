@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.google.gson.Gson;
 import com.mysql.cj.Session;
 
 import bbdd.ConexionMariaDB;
@@ -57,9 +58,11 @@ public class LoginSesion extends HttpServlet {
 				session.setAttribute("usuario",user.getNombre());
 				session.setAttribute("email", user.getCorreo());
 				session.setAttribute("databaseList", new DatabaseDAO(conexion.getObjConexion()).recuperarDatabasesUser(user.getCorreo()));
+				conexion.getObjConexion().close();
 				response.sendRedirect(request.getContextPath() + "/admin");
 			}else {
 				//System.out.println("contraseña incorrecta");
+				conexion.getObjConexion().close();
 				response.sendRedirect(request.getContextPath() + "/index.jsp");
 			}
 		}

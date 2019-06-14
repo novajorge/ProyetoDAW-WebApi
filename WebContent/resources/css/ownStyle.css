@@ -3,3 +3,4 @@
 	background-color: red;
 	
 }
+.modal { max-height: 100%; overflow: visible}

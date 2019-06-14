@@ -12,7 +12,7 @@
     <servlet-name>admin</servlet-name>
     <url-pattern>/admin</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>recuperarPassword</servlet-name>
     <jsp-file>/recuperarPassword.jsp</jsp-file>
   </servlet>

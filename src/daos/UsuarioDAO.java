@@ -51,6 +51,7 @@ public class UsuarioDAO implements metodosDB {
 				nivel.setNivel(rs.getString("nivel"));
 				nivel = new NivelDAO(con).recuperarNivel(nivel);
 				usuario1= new Usuario(rs.getString("nombre"),rs.getString("contrasena"),rs.getString("correo"),rs.getString("empresa"),nivel,rs.getBoolean("activa"),rs.getDate("fechaCreacion"));
+				System.out.println("dao");
 				System.out.println(usuario1);
 			}		
 		} catch (SQLException e) {
@@ -134,6 +135,25 @@ public class UsuarioDAO implements metodosDB {
 			throw new DAOException(Costantes.DB_ERR, e);
 			
 		} finally {
+			closePreparedStatement(st);
+		}
+		
+	}
+	public void  updateCuenta(Usuario in_user) throws DAOException {
+		PreparedStatement st = null;
+		try {
+			st = con.prepareStatement(DbQuery.getUpdateusuario());
+			st.setString(1, in_user.getNombre());
+			st.setString(2, in_user.getContrasena());
+			st.setString(3, in_user.getEmpresa());
+			st.setString(4, in_user.getCorreo());
+			
+			
+			st.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println(e);
+			throw new DAOException(Costantes.DB_ERR, e);
+		}finally {
 			closePreparedStatement(st);
 		}
 		

@@ -50,7 +50,8 @@ public class AddDatabase extends HttpServlet {
 		database.setActiva(Boolean.parseBoolean(request.getParameter("active")));
 		database.setUsuario(request.getParameter("user"));
 		database.setPassword(request.getParameter("pass"));
-		database.setType(new TypesDatabaseDAO(conexion.getObjConexion()).recuperarType(Integer.valueOf(request.getParameter("selectTypes"))));
+		database.setSchema(request.getParameter("schema"));
+		database.setType(new TypesDatabaseDAO(conexion.getObjConexion()).recuperarType(Integer.valueOf(request.getParameter("selectTypes2"))));
 		
 		System.out.println(database.toString());
 		
@@ -60,10 +61,13 @@ public class AddDatabase extends HttpServlet {
 		HttpSession sesion = request.getSession();
 		sesion.setAttribute("DatabaseAdded", true);
 		sesion.setAttribute("databaseList", new DatabaseDAO(conexion.getObjConexion()).recuperarDatabasesUser((String) sesion.getAttribute("email")));
+		conexion.getObjConexion().close();
+		
 		response.sendRedirect(request.getContextPath() + "/admin");
 		
 		}catch (Exception e) {
 			System.out.println("error:"+e);
+			response.sendRedirect(request.getContextPath() + "/admin");
 		}
 	}
 

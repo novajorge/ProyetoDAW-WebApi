@@ -54,6 +54,7 @@ public class GetDatabaseInfo extends HttpServlet {
 			response.setContentType("application/json");
 			response.setCharacterEncoding("UTF-8");
 			response.getWriter().write(databaseJsonString);
+			conexion.getObjConexion().close();
 			
 		}catch (Exception e) {
 			System.out.println(e);
